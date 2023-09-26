@@ -28,6 +28,9 @@ RUN groupadd --gid 1002 ${USERNAME} && \
 RUN pip3 install --upgrade pip && \
     pip3 install awscli aws-sam-cli --upgrade
 
+# Configure Git
+RUN sudo -u ${USERNAME} git config --global user.name "${GIT_USER_NAME}" && \
+    sudo -u ${USERNAME} git config --global user.email "${GIT_USER_EMAIL}"
 
 USER ${USERNAME}
 ENV PATH /home/${USERNAME}/.local/bin:/home/${USERNAME}/bin:${PATH}
